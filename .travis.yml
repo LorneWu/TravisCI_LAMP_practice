@@ -1,29 +1,44 @@
-language: php
-
-php:
-  - 5.4
-  - 5.6
-  - 7.0
-  - 7.1
-
-services:
-  - mysql
-
-env:
-  - DB=mysql
- 
-addons:
-  apt:
-    sources:
-      - mysql-5.7-trusty
-    packages:
-      - mysql-server
-
 dist: trusty
 
 sudo: required
 
-before_script:
-  - mysql -e 'create database antvel;'
-script:
-  - php try_mysql.php
+matrix:
+  include:
+  - language: php
+    php:
+      - 5.4
+      - 5.6
+      - 7.0
+      - 7.1
+    services:
+      - mysql
+    env:
+      - DB=mysql
+    addons:
+      apt:
+        sources:
+          - mysql-5.7-trusty
+        packages:
+          - mysql-server
+    before_script:
+      - mysql -e 'create database antvel;'
+    script:
+      - php try_mysql.php
+    - language: python
+      python:
+          - "2.7"
+
+      services:
+          - docker
+
+      before_install:
+          - docker pull selenium/node-firefox:3.8.1-francium
+          - docker pull selenium/hub:3.8.1-francium
+          - docker run -d -p 4444:4444 --name selenium-hub selenium/hub:3.8.1-francium
+          - docker run -d --link selenium-hub:hub --name selenium-node-firefox -v /dev/shm:/dev/shm selenium/node-firefox:3.8.1-francium
+
+      # command to install dependencies
+      install:
+          - pip install -r requirements.txt
+      script:
+          - python tests.py 
