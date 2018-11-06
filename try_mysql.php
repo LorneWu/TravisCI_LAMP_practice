@@ -4,7 +4,7 @@
   $password = "new_password";
 
   // Create connection
-  $conn = new mysqli($servername, $username, $password,"antvel");
+  $conn = new mysqli($servername, $username, $password,"test");
 
   // Check connection
   if ($conn->connect_error) {
