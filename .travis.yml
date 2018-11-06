@@ -27,7 +27,7 @@ before_script:
   #- mysql -e 'create database test;'
   - mysql_upgrade
   - mysql -u root -e "CREATE DATABASE test;"
-  - mysql -u root -e "CREATE USER 'travis'@'%' IDENTIFIED BY 'password';"
+  #- mysql -u root -e "CREATE USER 'travis'@'%' IDENTIFIED BY 'password';"
   - mysql -u root -e "GRANT ALL PRIVILEGES ON test.* TO 'travis'@'%';";
 script:
   - php try_mysql.php
