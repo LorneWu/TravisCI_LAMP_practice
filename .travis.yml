@@ -21,7 +21,7 @@ matrix:
         packages:
           - mysql-server
     before_script:
-      - mysql -e 'create database antvel;'
+      - mysql -e 'create database test;'
     script:
       - php try_mysql.php
   - language: python
