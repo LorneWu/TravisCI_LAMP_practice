@@ -59,4 +59,6 @@ matrix:
     script:
         - whereis google-chrome-stable
         - whereis chromedriver
+        - ls /usr/local/share/chromedriver
+        - ls /usr/local/bin/chromedriver
         - python tests.py
