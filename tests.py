@@ -4,8 +4,10 @@ import os
 
 chrome_options = Options()  
 chrome_options.add_argument("--headless")  
-chrome_options.binary_location = '/usr/local/share'    
-try:driver =webdriver.Chrome()
-except:print("fail")
+chrome_options.binary_location = '/usr/local/bin'    
+try:driver = webdriver.Chrome()
+except Exception as e:
+  print("fail")
+  print(e)
 
 driver =webdriver.Chrome(executable_path=os.path.abspath("chromedriver"),chrome_options=chrome_options)  
