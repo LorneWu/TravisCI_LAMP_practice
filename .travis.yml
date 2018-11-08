@@ -4,6 +4,49 @@ sudo: false
 
 matrix:
   include:
+  - language: python
+    python:
+        - "2.7"
+        - 3.5
+    addons: # get google-chrome-stable
+        - chrome: stable
+    before_script: # Install ChromeDriver (64bits; replace 64 with 32 for 32bits).
+        - wget -N https://chromedriver.storage.googleapis.com/2.43/chromedriver_linux64.zip -P ~/
+        - unzip ~/chromedriver_linux64.zip -d ~/
+        - rm ~/chromedriver_linux64.zip
+        - sudo mv -f ~/chromedriver /usr/local/share/
+        - sudo chmod +x /usr/local/share/chromedriver
+        - sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
+        - export PATH=$PATH:/usr/local/share/chromedriver
+        - export PATH=$PATH:/usr/local/bin/chromedriver
+    # command to install dependencies
+    install:
+        - pip install -r requirements.txt
+    script:
+        - whereis google-chrome-stable
+        - whereis chromedriver
+        - ls /usr/local/share/chromedriver
+        - ls /usr/local/bin/chromedriver
+        - python tests.py
+  - language: php
+    php:
+        - 7.1
+    before_script:
+        - sudo apt-get install apache2
+        - sudo a2enmod actions
+        - sudo a2enmod rewrite
+        - echo "export PATH=/home/vagrant/.phpenv/bin:$PATH" | sudo tee -a /etc/apache2/envvars > /dev/null
+        - echo "$(curl -fsSL https://gist.github.com/roderik/16d751c979fdeb5a14e3/raw/gistfile1.txt)" | sudo tee /etc/apache2/conf.d/phpconfig > /dev/null
+        - echo "$(curl -fsSL https://gist.github.com/roderik/2eb301570ed4a1f4c33d/raw/gistfile1.txt)" | sed -e "s,PATH,`pwd`/web,g" | sudo tee /etc/apache2/sites-available/default > /dev/null
+        - sudo service apache2 restart
+        - mysql -u root -e "CREATE USER 'myproject'@'localhost' IDENTIFIED BY 'mypass'"
+        - mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'myproject'@'localhost' WITH GRANT OPTION;"
+        - bin/vendors install
+        - app/console doctrine:database:create
+        - app/console doctrine:schema:update --force
+        - app/console doctrine:fixtures:load
+    script:
+        - curl -L 127.0.0.1
   - language: php
     php:
 #       - 5.4
@@ -38,49 +81,4 @@ matrix:
     install:
         - pip install -r requirements.txt
     script:
-        - python tests.py 
-
-  - language: python
-    python:
-        - "2.7"
-        - 3.5
-    addons: # get google-chrome-stable
-        - chrome: stable
-    before_script: # Install ChromeDriver (64bits; replace 64 with 32 for 32bits).
-        - wget -N https://chromedriver.storage.googleapis.com/2.43/chromedriver_linux64.zip -P ~/
-        - unzip ~/chromedriver_linux64.zip -d ~/
-        - rm ~/chromedriver_linux64.zip
-        - sudo mv -f ~/chromedriver /usr/local/share/
-        - sudo chmod +x /usr/local/share/chromedriver
-        - sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
-        - export PATH=$PATH:/usr/local/share/chromedriver
-        - export PATH=$PATH:/usr/local/bin/chromedriver
-    # command to install dependencies
-    install:
-        - pip install -r requirements.txt
-    script:
-        - whereis google-chrome-stable
-        - whereis chromedriver
-        - ls /usr/local/share/chromedriver
-        - ls /usr/local/bin/chromedriver
-        - python tests.py
-  - language: php
-    php:
-        - 5.3
-        - 5.4
-    before_script:
-        - sudo apt-get install apache2
-        - sudo a2enmod actions
-        - sudo a2enmod rewrite
-        - echo "export PATH=/home/vagrant/.phpenv/bin:$PATH" | sudo tee -a /etc/apache2/envvars > /dev/null
-        - echo "$(curl -fsSL https://gist.github.com/roderik/16d751c979fdeb5a14e3/raw/gistfile1.txt)" | sudo tee /etc/apache2/conf.d/phpconfig > /dev/null
-        - echo "$(curl -fsSL https://gist.github.com/roderik/2eb301570ed4a1f4c33d/raw/gistfile1.txt)" | sed -e "s,PATH,`pwd`/web,g" | sudo tee /etc/apache2/sites-available/default > /dev/null
-        - sudo service apache2 restart
-        - mysql -u root -e "CREATE USER 'myproject'@'localhost' IDENTIFIED BY 'mypass'"
-        - mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'myproject'@'localhost' WITH GRANT OPTION;"
-        - bin/vendors install
-        - app/console doctrine:database:create
-        - app/console doctrine:schema:update --force
-        - app/console doctrine:fixtures:load
-    script:
-        - curl -L 127.0.0.1
+        - sleep(3)
