@@ -53,7 +53,6 @@ matrix:
         - sudo mv -f ~/chromedriver /usr/local/share/
         - sudo chmod +x /usr/local/share/chromedriver
         - sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
-        - exec $SHELL
     # command to install dependencies
     install:
         - pip install -r requirements.txt
