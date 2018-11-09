@@ -4,35 +4,6 @@ sudo: false
 
 matrix:
   include:
-  - language: python
-    python:
-        - "2.7"
-        - 3.5
-    addons: # get google-chrome-stable
-        - chrome: stable
-    before_script: # Install ChromeDriver (64bits; replace 64 with 32 for 32bits).
-        - wget -N http://chromedriver.storage.googleapis.com/2.24/chromedriver_linux64.zip -P ~/
-        - unzip ~/chromedriver_linux64.zip -d ~/
-        - rm ~/chromedriver_linux64.zip
-        - sudo mv -f ~/chromedriver /usr/local/share/
-        - sudo chmod +x /usr/local/share/chromedriver
-        - sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
-        - export PATH=$PATH:/usr/local/share/chromedriver
-        - export PATH=$PATH:/usr/local/bin/chromedriver
-    # command to install dependencies
-    install:
-        - pip install -r requirements.txt
-    script:
-#         - whereis google-chrome-stable
-#         - whereis chromedriver
-#         - ls /usr/local/share/chromedriver
-#         - ls /usr/local/bin/chromedriver
-        - "export DISPLAY=:99.0"
-        - "sh -e /etc/init.d/xvfb start" # the starting the virtual X frame buffer: Xvfb process
-        - sleep 3 #wait a while before xvfb to start
-        - python tests.py
-    after_script:
-      - "sh -e /etc/init.d/xvfb stop"
   - language: php
     php:
         - 7.1
@@ -97,3 +68,32 @@ notifications:
         - pip install -r requirements.txt
     script:
         - sleep 3
+  - language: python
+    python:
+        - "2.7"
+        - 3.5
+    addons: # get google-chrome-stable
+        - chrome: stable
+    before_script: # Install ChromeDriver (64bits; replace 64 with 32 for 32bits).
+        - wget -N http://chromedriver.storage.googleapis.com/2.24/chromedriver_linux64.zip -P ~/
+        - unzip ~/chromedriver_linux64.zip -d ~/
+        - rm ~/chromedriver_linux64.zip
+        - sudo mv -f ~/chromedriver /usr/local/share/
+        - sudo chmod +x /usr/local/share/chromedriver
+        - sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
+        - export PATH=$PATH:/usr/local/share/chromedriver
+        - export PATH=$PATH:/usr/local/bin/chromedriver
+    # command to install dependencies
+    install:
+        - pip install -r requirements.txt
+    script:
+#         - whereis google-chrome-stable
+#         - whereis chromedriver
+#         - ls /usr/local/share/chromedriver
+#         - ls /usr/local/bin/chromedriver
+        - "export DISPLAY=:99.0"
+        - "sh -e /etc/init.d/xvfb start" # the starting the virtual X frame buffer: Xvfb process
+        - sleep 3 #wait a while before xvfb to start
+        - python tests.py
+    after_script:
+      - "sh -e /etc/init.d/xvfb stop"
