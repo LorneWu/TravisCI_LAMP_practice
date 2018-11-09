@@ -57,6 +57,7 @@ matrix:
   - language: python
     python:
         - "2.7"
+    cache: pip
     services:
         - docker
     before_install:
@@ -73,6 +74,7 @@ matrix:
     python:
         - "2.7"
         - 3.5
+    cache: pip
     addons: # get google-chrome-stable
         - chrome: stable
     before_script: # Install ChromeDriver (64bits; replace 64 with 32 for 32bits).
