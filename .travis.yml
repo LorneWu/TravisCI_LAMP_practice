@@ -2,6 +2,13 @@ dist: trusty
 
 sudo: required
 
+notifications:
+  email:
+    - steven24205@gmail.com
+    - P76061467@gmail.com
+  on_success: always # default: change
+  on_failure: never # default: always
+  
 matrix:
   include:
   - language: php
@@ -53,12 +60,6 @@ matrix:
     services:
         - docker
     before_install:
-notifications:
-  email:
-    - steven24205@gmail.com
-    - P76061467@gmail.com
-  on_success: always # default: change
-  on_failure: never # default: always
         - docker pull selenium/node-firefox:3.8.1-francium
         - docker pull selenium/hub:3.8.1-francium
         - docker run -d -p 4444:4444 --name selenium-hub selenium/hub:3.8.1-francium
