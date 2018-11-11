@@ -95,15 +95,15 @@ matrix:
     python:
         - "2.7"
         - 3.5
-#     sudo: 
-#       - required
-#       - false
-#     dist:
-#       - trusty
-#       - xenial
-#       - precise
+    sudo: 
+      - required
+      - false
+    dist:
+      - trusty
+      - xenial
+      - precise
     matrix:
-      include:
+      exclude:
         - dist: precise
           sudo: required
     
