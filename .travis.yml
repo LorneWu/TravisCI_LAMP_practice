@@ -13,5 +13,5 @@ os:
   - osx
   - windows
 script:
-  - sleep 3
+  - sudo sleep 1
   - exit 0
