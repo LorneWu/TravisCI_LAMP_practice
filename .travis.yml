@@ -127,4 +127,4 @@ jobs:
     script:
         - curl -L 127.0.0.1
     after_failure:
-        - sleep 3
+        - cat /var/log/apache2/error.log
