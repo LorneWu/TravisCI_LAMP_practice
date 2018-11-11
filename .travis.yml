@@ -24,8 +24,8 @@ dist:
   - xenial
   - precise
   
-matrix:
-  include:
+jobs:
+#   include:
   - name: LAMP
     language: php
     php:
@@ -57,6 +57,7 @@ matrix:
         - sleep 3
   - name: "MySQL"
     language: php
+    stage: test
     php:
       - 5.4
       - 5.6
@@ -66,20 +67,24 @@ matrix:
       - mysql
     env:
       - DB=mysql
+    stage: test2
     addons:
       apt:
         sources:
           - mysql-5.7-trusty
         packages:
           - mysql-server
+    stage: test3
     before_script:
       #- mysql -e 'create database test;'
       - mysql_upgrade
       - mysql -u root -e "CREATE DATABASE test;"
       #- mysql -u root -e "CREATE USER 'travis'@'%' IDENTIFIED BY 'password';"
       - mysql -u root -e "GRANT ALL PRIVILEGES ON test.* TO 'travis'@'localhost';";
+    stage: test4
     script:
       - php try_mysql.php
+    stage: success
   - name: docker*
     language: python
     python:
