@@ -19,16 +19,22 @@ branches:
   only:
   - /master*/
 
+matrix:
+  include:
+      - os: linux
+        sudo: required
+        dist: precise
+      - os: linux
+        sudo: false 
+        dist: trusty
+      - os: linux
+        sudo: required
+        dist: trusty
+      - dist: xenial
+      - os: osx
+      - os: windows
 
 matrix:
-  matrix:
-    include:
-        - os: linux
-          sudo: required
-        - os: linux
-          sudo: required
-        - os: osx
-
   include:
   - name: LAMP
     language: php
