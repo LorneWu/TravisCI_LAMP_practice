@@ -10,11 +10,6 @@ dist: trusty
 language: php
 php:
   - 5.5
-  - 7
-matrix:
-  include:
-  - name: Test_matrix_include
-    stage: deploy
 os:
   - linux
   - osx
