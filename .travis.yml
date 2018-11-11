@@ -47,7 +47,7 @@ jobs:
       - php try_mysql.php
 
   - name: docker*
-    stage: "docker"
+    stage: test
     language: python
     python:
         - "2.7"
@@ -65,7 +65,7 @@ jobs:
     script:
         - echo $PATH
   - name: selenium
-    stage: deploy
+    stage: test
     language: python
     python:
         - "2.7"
@@ -97,7 +97,7 @@ jobs:
         email:
           - steven27149@gmail.com
   - name: LAMP
-    stage: "lamp"
+    stage: test
     language: php
     php:
         - 5.6
