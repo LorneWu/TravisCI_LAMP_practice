@@ -55,15 +55,12 @@ jobs:
     services:
         - docker
     before_install:
-        - sudo docker pull selenium/node-firefox:3.8.1-francium
-        - sudo docker pull selenium/hub:3.8.1-francium
-        - sudo docker run -d -p 4444:4444 --name selenium-hub selenium/hub:3.8.1-francium
-        - sudo docker run -d --link selenium-hub:hub --name selenium-node-firefox -v /dev/shm:/dev/shm selenium/standalone-chrome:3.0.1-aluminum
+        - docker run -d -p 127.0.0.1:4444:4444 -v /dev/shm:/dev/shm selenium/standalone-chrome:3.0.1-aluminum
     # command to install dependencies
     install:
         - pip install selenium
     script: 
-        - python3 docker_selenium.py
+        - python docker_selenium.py
         
   - name: selenium
     stage: test
