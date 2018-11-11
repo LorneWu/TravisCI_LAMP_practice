@@ -45,7 +45,6 @@ jobs:
         - app/console doctrine:database:create
         - app/console doctrine:schema:update --force
         - app/console doctrine:fixtures:load
-    stage: test
     script:
         - curl -L 127.0.0.1
     after_failure:
@@ -75,7 +74,6 @@ jobs:
       - mysql -u root -e "CREATE DATABASE test;"
       #- mysql -u root -e "CREATE USER 'travis'@'%' IDENTIFIED BY 'password';"
       - mysql -u root -e "GRANT ALL PRIVILEGES ON test.* TO 'travis'@'localhost';";
-    stage: test
     script:
       - php try_mysql.php
 
@@ -95,7 +93,6 @@ jobs:
     # command to install dependencies
     install:
         - pip install -r requirements.txt
-    stage: test
     script:
         - echo $PATH
   - name: selenium
@@ -119,7 +116,6 @@ jobs:
     # command to install dependencies
     install:
         - pip install -r requirements.txt
-    stage: test
     script:
         - "export DISPLAY=:99.0"
         - "sh -e /etc/init.d/xvfb start" # the starting the virtual X frame buffer: Xvfb process
