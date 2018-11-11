@@ -1,6 +1,4 @@
-dist: trusty
 
-sudo: required
 
 notifications:
   email:
@@ -12,6 +10,7 @@ notifications:
 git:
   depth: false #no history
   quiet: true #no log
+  
 branches:
   except:
     - tmp
@@ -19,9 +18,18 @@ branches:
     - php_tmp
   only:
   - /master*/
+
+env:
+  - sudo: required 
+    dist: precise
+  - sudo: false 
+    dist: trusty
+  - dist: trusty
+    sudo: required
+  
+
 matrix:
   include:
-  
   - name: LAMP
     language: php
     php:
