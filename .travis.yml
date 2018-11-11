@@ -20,6 +20,9 @@ jobs:
   include:
   - name: LAMP
     stage: "LAMP"
+    dist:
+      - xenial
+      - trusty
     language: php
     php:
         - 7.1
