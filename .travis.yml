@@ -16,20 +16,6 @@ branches:
     - php_tmp
   only:
   - /master*/
-matrix:
-  include:
-  - dist: trusty
-    os: linux
-    sudo: required
-  - dist: trusty
-    os: linux
-    sudo: required
-  - dist: xenial
-    os: linux
-    sudo: required
-  - dist: xenial
-    os: linux
-    sudo: required
 
 jobs:
   include:
@@ -115,6 +101,20 @@ jobs:
     cache: pip
     addons: # get google-chrome-stable
         - chrome: stable
+    matrix:
+    include:
+      - dist: trusty
+        os: linux
+        sudo: required
+      - dist: trusty
+        os: linux
+        sudo: required
+      - dist: xenial
+        os: linux
+        sudo: required
+      - dist: xenial
+        os: linux
+        sudo: required
     before_script: # Install ChromeDriver (64bits; replace 64 with 32 for 32bits).
         - wget -N http://chromedriver.storage.googleapis.com/2.24/chromedriver_linux64.zip -P ~/
         - unzip ~/chromedriver_linux64.zip -d ~/
