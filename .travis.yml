@@ -20,8 +20,6 @@ branches:
   only:
   - /master*/
 matrix:
-  allow_failure:
-  - name:LAMP
   include:
   
   - name: LAMP
@@ -127,3 +125,7 @@ matrix:
         - python tests.py
     after_script:
       - "sh -e /etc/init.d/xvfb stop"
+    after_success:
+      notifications:
+        email:
+          - steven27149@gmail.com
