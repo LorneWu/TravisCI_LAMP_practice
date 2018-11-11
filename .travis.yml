@@ -1,21 +1,29 @@
 name: "MySQL"
 language: php
 
-matrix:
-  include:
-    - sudo: false 
-      dist: trusty
-      php:
-      - 5.4
-      - 5.5
-    - sudo: required 
-      dist: trusty
-      php: 7.0
-    - dist: xenial
-      sudo: required
-      php:
-        - 5.4
-        - 5.5
+php:
+  - 5.4
+  - 5.5
+  - 7.0
+  - 7.1
+dist:
+  - trusty
+  - xenial
+# matrix:
+#   include:
+#     - sudo: false 
+#       dist: trusty
+#       php:
+#       - 5.4
+#       - 5.5
+#     - sudo: required 
+#       dist: trusty
+#       php: 7.0
+#     - dist: xenial
+#       sudo: required
+#       php:
+#         - 5.4
+#         - 5.5
 services:
   - mysql
 env:
