@@ -9,6 +9,7 @@ php:
 dist:
   - trusty
   - xenial
+  
 # matrix:
 #   include:
 #     - sudo: false 
