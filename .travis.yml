@@ -2,8 +2,8 @@ notifications:
   email:
     - steven24205@gmail.com
     - P76061467@gmail.com
-  on_success: change # default: change
-  on_failure: always # default: always
+  on_success: never # default: change
+  on_failure: change # default: always
 
 
 os:
