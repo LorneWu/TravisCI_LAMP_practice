@@ -12,10 +12,5 @@ os:
   - linux
   - osx
   - windows
-matrix:
-  include:
-  - script:
-      - sudo sleep 1
-      - exit 1
-  - script:
-      - echo "test"
+script:
+  - exit 0
