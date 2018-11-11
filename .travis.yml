@@ -19,7 +19,7 @@ branches:
 jobs:
   include:
   - name: LAMP
-    stage: test
+    stage: "lamp"
     language: php
     php:
         - 7.1
