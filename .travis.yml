@@ -22,6 +22,16 @@ matrix:
   - language: php
     php:
         - 7.1
+    services:
+      - mysql
+    env:
+      - DB=mysql
+    addons:
+      apt:
+        sources:
+          - mysql-5.7-trusty
+        packages:
+          - mysql-server
     before_script:
         - sudo apt-get install apache2
         - sudo a2enmod actions
