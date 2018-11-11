@@ -11,7 +11,8 @@ notifications:
 
 git:
   depth: false
-
+  quiet: true
+  submodules: false
 matrix:
   include:
   - language: php
