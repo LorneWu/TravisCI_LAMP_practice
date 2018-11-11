@@ -1,11 +1,3 @@
-sudo:
-  - required
-  - false
-dict:
-  - precise
-  - trusty
-  - xenial
-
 notifications:
   email:
     - steven24205@gmail.com
