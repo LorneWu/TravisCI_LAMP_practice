@@ -19,7 +19,7 @@ branches:
 jobs:
   include:
   - name: LAMP
-    stage: "LAMP"
+    stage: test
     dist:
       - xenial
       - trusty
