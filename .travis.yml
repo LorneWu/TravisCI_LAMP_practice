@@ -8,8 +8,6 @@ notifications:
 sudo: false
 dist: trusty
 language: php
-php:
-  - 5.5
 os:
   - linux
   - osx
