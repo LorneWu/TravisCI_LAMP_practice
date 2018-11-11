@@ -17,7 +17,7 @@ branches:
   only:
   - /master*/
 
-jobs:
+matrix:
   include:
   - name: LAMP
     language: php
