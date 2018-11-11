@@ -50,7 +50,7 @@ jobs:
     stage: test
     language: python
     python:
-        - "2.7"
+        - "3.7"
     cache: pip
     services:
         - docker
@@ -62,8 +62,9 @@ jobs:
     # command to install dependencies
     install:
         - pip install -r requirements.txt
-    script:
-        - echo $PATH
+    script: 
+        - python3 docker_selenium.py
+        
   - name: selenium
     stage: test
     language: python
