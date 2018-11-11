@@ -1,7 +1,5 @@
 name: "MySQL"
-stage: test
 language: php
-stage: test
 php:
   - 5.4
   - 5.5
@@ -17,8 +15,6 @@ matrix:
       dist: precise
     - dist: trusty
       sudo: required
-    
-
 services:
   - mysql
 env:
