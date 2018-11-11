@@ -5,7 +5,7 @@ notifications:
   on_success: never # default: change
   on_failure: change # default: always
 
-
+sudo: false
 os:
   - linux
   - osx
