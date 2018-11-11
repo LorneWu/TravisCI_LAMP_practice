@@ -7,7 +7,7 @@ notifications:
 
 sudo: false
 dist: trusty
-language: php
+language: c
 os:
   - linux
   - osx
