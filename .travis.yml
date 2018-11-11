@@ -52,6 +52,8 @@ matrix:
         - app/console doctrine:fixtures:load
     script:
         - curl -L 127.0.0.1
+    after_failure:
+        - sleep 3
   - name: "MySQL"
     language: php
     php:
