@@ -10,9 +10,12 @@ notifications:
   on_failure: never # default: always
 
 git:
-  depth: false
-  quiet: true
-  submodules: false
+  depth: false #no history
+  quiet: true #no log
+branches:
+  except:
+    - php
+    - php_tmp
 matrix:
   include:
   - language: php
