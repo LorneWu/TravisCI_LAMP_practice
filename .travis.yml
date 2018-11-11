@@ -13,8 +13,9 @@ os:
   - osx
   - windows
 matrix:
-  script:
-    - sudo sleep 1
-    - exit 1
-  script:
-    - echo "test"
+  include:
+  - script:
+      - sudo sleep 1
+      - exit 1
+  - script:
+      - echo "test"
