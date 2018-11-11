@@ -107,6 +107,20 @@ jobs:
         - "2.7"
         - 3.5
     cache: pip
+    matrix:
+      include:
+      - dist: trusty
+        os: linux
+        sudo: required
+      - dist: trusty
+        os: linux
+        sudo: required
+      - dist: xenial
+        os: linux
+        sudo: required
+      - dist: xenial
+        os: linux
+        sudo: required
     addons: # get google-chrome-stable
         - chrome: stable
     before_script: # Install ChromeDriver (64bits; replace 64 with 32 for 32bits).
