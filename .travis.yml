@@ -14,8 +14,7 @@ git:
   quiet: true #no log
 branches:
   except:
-    - php
-    - php_tmp
+    - tmp
 matrix:
   include:
   - language: php
