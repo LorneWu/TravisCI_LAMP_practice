@@ -7,7 +7,7 @@ notifications:
 
 sudo: false
 dist: trusty
-language: python
+language: c
 os:
   - linux
   - osx
