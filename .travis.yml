@@ -21,7 +21,8 @@ branches:
   - /master*/
 matrix:
   include:
-  - language: php
+  - name: LAMP
+    language: php
     php:
         - 7.1
     services:
@@ -50,7 +51,8 @@ matrix:
         - app/console doctrine:fixtures:load
     script:
         - curl -L 127.0.0.1
-  - language: php
+  - name: "MySQL"
+    language: php
     php:
 #       - 5.4
       - 5.6
@@ -74,7 +76,8 @@ matrix:
       - mysql -u root -e "GRANT ALL PRIVILEGES ON test.* TO 'travis'@'localhost';";
     script:
       - php try_mysql.php
-  - language: python
+  - name: docker*
+    language: python
     python:
         - "2.7"
     cache: pip
@@ -90,7 +93,8 @@ matrix:
         - pip install -r requirements.txt
     script:
         - echo $PATH
-  - language: python
+  - name: selenium
+    language: python
     python:
         - "2.7"
         - 3.5
