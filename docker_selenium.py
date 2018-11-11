@@ -8,7 +8,7 @@ chrome_options.add_argument("--headless")
 driver = webdriver.Remote(
    command_executor='http://127.0.0.1:4444/wd/hub',
    desired_capabilities=DesiredCapabilities.CHROME
-   chrome_options=chrome_options
+#    chrome_options=chrome_options
 )
 
 search_input = driver.find_element_by_name('q') # 取得搜尋框
