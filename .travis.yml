@@ -6,6 +6,7 @@ notifications:
   on_failure: change # default: always
 
 sudo: false
+dist: trusty
 language: python
 os:
   - linux
