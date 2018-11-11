@@ -12,6 +12,9 @@ os:
   - linux
   - osx
   - windows
-script:
-  - sudo sleep 1
-  - exit 1
+matrix:
+  script:
+    - sudo sleep 1
+    - exit 1
+  script:
+    - echo "test"
