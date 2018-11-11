@@ -1,129 +1,31 @@
-notifications:
-  email:
-    - steven24205@gmail.com
-    - P76061467@gmail.com
-  on_success: change # default: change
-  on_failure: always # default: always
-
-git:
-  depth: false #no history
-  quiet: true #no log
-  
-branches:
-  except:
-    - tmp
-    - php
-    - php_tmp
-  only:
-  - /master*/
-jobs:
-  include:
-  - name: "MySQL"
-    stage: test
-    language: php
-    stage: test
-    php:
-      - 5.4
-      - 5.6
-      - 7.0
-      - 7.1
-    services:
-      - mysql
-    env:
-      - DB=mysql
-    addons:
-      apt:
-        sources:
-          - mysql-5.7-trusty
-        packages:
-          - mysql-server
-    before_script:
-      #- mysql -e 'create database test;'
-      - mysql_upgrade
-      - mysql -u root -e "CREATE DATABASE test;"
-      #- mysql -u root -e "CREATE USER 'travis'@'%' IDENTIFIED BY 'password';"
-      - mysql -u root -e "GRANT ALL PRIVILEGES ON test.* TO 'travis'@'localhost';";
-    script:
-      - php try_mysql.php
-
-  - name: docker*
-    stage: "docker"
-    language: python
-    python:
-        - "2.7"
-    cache: pip
-    services:
-        - docker
-    before_install:
-        - docker pull selenium/node-firefox:3.8.1-francium
-        - docker pull selenium/hub:3.8.1-francium
-        - docker run -d -p 4444:4444 --name selenium-hub selenium/hub:3.8.1-francium
-        - docker run -d --link selenium-hub:hub --name selenium-node-firefox -v /dev/shm:/dev/shm selenium/node-firefox:3.8.1-francium
-    # command to install dependencies
-    install:
-        - pip install -r requirements.txt
-    script:
-        - echo $PATH
-  - name: selenium
-    stage: deploy
-    language: python
-    python:
-        - "2.7"
-        - 3.5
-    cache: pip
-    addons: # get google-chrome-stable
-        - chrome: stable
-    before_script: # Install ChromeDriver (64bits; replace 64 with 32 for 32bits).
-        - wget -N http://chromedriver.storage.googleapis.com/2.24/chromedriver_linux64.zip -P ~/
-        - unzip ~/chromedriver_linux64.zip -d ~/
-        - rm ~/chromedriver_linux64.zip
-        - sudo mv -f ~/chromedriver /usr/local/share/
-        - sudo chmod +x /usr/local/share/chromedriver
-        - sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
-        - export PATH=$PATH:/usr/local/share/chromedriver
-        - export PATH=$PATH:/usr/local/bin/chromedriver
-    # command to install dependencies
-    install:
-        - pip install -r requirements.txt
-    script:
-        - "export DISPLAY=:99.0"
-        - "sh -e /etc/init.d/xvfb start" # the starting the virtual X frame buffer: Xvfb process
-        - sleep 3 #wait a while before xvfb to start
-        - python tests.py
-    after_script:
-      - "sh -e /etc/init.d/xvfb stop"
-    after_success:
-      notifications:
-        email:
-          - steven27149@gmail.com
-  - name: LAMP
-    stage: "lamp"
-    language: php
-    php:
-        - 5.6
-        - 7.1
-    services:
-      - mysql
-    env:
-      - DB=mysql
-    addons:
-      apt:
-        sources:
-          - mysql-5.7-trusty
-        packages:
-          - mysql-server
-    before_script:
-        - sudo apt-get install apache2
-        - sudo a2enmod actions
-        - sudo a2enmod rewrite
-        - echo "export PATH=/home/vagrant/.phpenv/bin:$PATH" | sudo tee -a /etc/apache2/envvars > /dev/null
-        - sudo service apache2 restart
-        - mysql -u root -e "GRANT ALL PRIVILEGES ON test.* TO 'travis'@'localhost';";
-        - bin/vendors install
-        - app/console doctrine:database:create
-        - app/console doctrine:schema:update --force
-        - app/console doctrine:fixtures:load
-    script:
-        - curl -L 127.0.0.1
-    after_failure:
-        - sleep 3
+name: LAMP
+stage: "lamp"
+language: php
+php:
+    - 5.6
+    - 7.1
+services:
+  - mysql
+env:
+  - DB=mysql
+addons:
+  apt:
+    sources:
+      - mysql-5.7-trusty
+    packages:
+      - mysql-server
+before_script:
+    - sudo apt-get install apache2
+    - sudo a2enmod actions
+    - sudo a2enmod rewrite
+    - echo "export PATH=/home/vagrant/.phpenv/bin:$PATH" | sudo tee -a /etc/apache2/envvars > /dev/null
+    - sudo service apache2 restart
+    - mysql -u root -e "GRANT ALL PRIVILEGES ON test.* TO 'travis'@'localhost';";
+    - bin/vendors install
+    - app/console doctrine:database:create
+    - app/console doctrine:schema:update --force
+    - app/console doctrine:fixtures:load
+script:
+    - curl -L 127.0.0.1
+after_failure:
+    - sleep 3
