@@ -20,7 +20,10 @@ branches:
   only:
   - /master*/
 matrix:
+  allow_failure:
+  - name:LAMP
   include:
+  
   - name: LAMP
     language: php
     php:
