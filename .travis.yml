@@ -1,7 +1,7 @@
 language: php
-dist: 
-  - trusty
-  - precise
+# dist: 
+#   - trusty
+#   - precise
 sudo: 
   - false
   - required
