@@ -22,8 +22,5 @@ matrix:
   exclude:
   - sudo: false
     php: 7.1
-  allow_failure:
-  - php 5.4
 script:
 - echo "script"
-- exit 1
