@@ -1,16 +1,16 @@
 language: php
 env:
 - DB=mongodb
-# - DB=redis
-# - DB=mysql
+- DB=redis
+- DB=mysql
 sudo: 
   - false
-#   - required
+  - required
 php:
   - 5.4
-#   - 5.5
-#   - 7.0
-#   - 7.1
+  - 5.5
+  - 7.0
+  - 7.1
 env:
 matrix:
   include:
@@ -23,7 +23,7 @@ matrix:
   - sudo: false
     php: 7.1
   allow_failure:
-  - env: DB=mysql
-    
+  - php 5.4
 script:
 - echo "script"
+- exit 1
