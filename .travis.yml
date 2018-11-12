@@ -1,7 +1,8 @@
 language: php
-# dist: 
-#   - trusty
-#   - precise
+dist: 
+  - trusty
+  - precise
+  - xenial
 sudo: 
   - false
   - required
