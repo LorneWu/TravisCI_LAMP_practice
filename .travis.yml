@@ -15,6 +15,6 @@ script: echo "4"
 before_cache:
   - pip uninstall -y selenium
   - echo "5"
-after_success: echo "6"
-after_failure: echo "7"
-after_script: echo "8"
+after_success: echo "6_s"
+after_failure: echo "6_f"
+after_script: echo "7"
