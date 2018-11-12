@@ -23,7 +23,7 @@ matrix:
   - sudo: false
     php: 7.1
   allow_failure:
-  - env: DB=mongodb
+  - env: DB=mysql
     
 script:
 - echo "script"
