@@ -3,8 +3,14 @@ language: c
 matrix:
   include:
   - dist: precise
-    sudo: false
+    sudo: required
   - dist: trusty
     sudo: true
+  - sudo: required
+    dist: trusty
+  - dist: xenial
+  - os: osx	
+  - os: windows
+    
 script:
   - echo "ok?"
