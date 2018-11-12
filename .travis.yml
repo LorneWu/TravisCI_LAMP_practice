@@ -14,6 +14,7 @@ php:
   - 7.1
 # env: # important!
 matrix:
+  fast_finish: true
   include:
   - os: windows
     sudo: false
