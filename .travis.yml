@@ -19,7 +19,7 @@ branches:
 jobs:
   include:
   - name: "MySQL"
-    stage: test
+    stage: "Test1"
     language: php
     stage: test
     php:
@@ -47,7 +47,7 @@ jobs:
       - php try_mysql.php
 
   - name: docker*
-    stage: test
+    stage: "Test2"
     language: python
     python:
         - "3.5"
@@ -63,7 +63,7 @@ jobs:
         - python docker_selenium.py
         
   - name: selenium
-    stage: test
+    stage: "Test3"
     language: python
     python:
         - "2.7"
@@ -95,7 +95,7 @@ jobs:
         email:
           - steven27149@gmail.com
   - name: LAMP
-    stage: test
+    stage: "Test4"
     language: php
     php:
         - 5.6
