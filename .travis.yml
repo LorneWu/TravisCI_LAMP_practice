@@ -5,9 +5,9 @@ matrix:
   - dist: precise
     sudo: required
   - dist: trusty
-    sudo: true
-  - sudo: required
-    dist: trusty
+    sudo: false
+  - dist: trusty
+    sudo: required
   - dist: xenial
   - os: osx	
   - os: windows
