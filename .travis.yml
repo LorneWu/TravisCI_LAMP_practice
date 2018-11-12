@@ -13,7 +13,7 @@ install:
 before_script: echo "3"
 script: echo "4"
 before_cache:
-  - pip uninstall selenium
+  - pip uninstall -y selenium
   - echo "5"
 after_success: echo "6"
 after_failure: echo "7"
