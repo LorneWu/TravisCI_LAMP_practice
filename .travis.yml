@@ -24,7 +24,7 @@ matrix:
   exclude:
   - sudo: false
     php: 7.1
-  allow_failure:
+  allow_failures:
   - os: windows
     env: KEY=VALUE
   - php: 5.6
