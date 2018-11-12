@@ -21,7 +21,6 @@ jobs:
   - name: "MySQL"
     stage: "Test1"
     language: php
-    stage: test
     php:
       - 5.4
       - 5.6
