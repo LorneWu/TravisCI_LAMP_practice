@@ -1,16 +1,23 @@
-language: c
+language: php
+dist: trusty
+sudo: 
+  - false
+  - required
+php:
+  - 5.4
+  - 5.5
+  - 7.0
+  - 7.1
 
 matrix:
   include:
   - dist: precise
-    sudo: required
-  - dist: trusty
     sudo: false
-  - dist: trusty
-    sudo: required
+    php: 5.6
   - dist: xenial
-  - os: osx	
-  - os: windows
-    
-script:
-  - echo "ok?"
+    php: 5.6
+  exclude:
+  - sudo: false
+    php:7.1
+ script:
+ - echo "script"
