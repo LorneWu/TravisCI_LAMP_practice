@@ -1,8 +1,8 @@
 language: php
-dist: 
-  - trusty
-  - precise
-  - xenial
+env:
+- DB=mongodb
+- DB=redis
+- DB=mysql
 sudo: 
   - false
   - required
