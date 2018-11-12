@@ -11,7 +11,7 @@ php:
   - 5.5
   - 7.0
   - 7.1
-env:
+# env: # important!
 matrix:
   include:
   - os: windows
@@ -23,7 +23,8 @@ matrix:
   exclude:
   - sudo: false
     php: 7.1
-#   allow_failure:
-#   - env: KEY=VALUE
+  allow_failure:
+  - os: windows
+    env: KEY=VALUE
 script:
 - echo "script"
