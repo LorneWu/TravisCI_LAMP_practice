@@ -21,9 +21,11 @@ matrix:
     env: KEY=VALUE
   - os: ios
     php: 5.6
+  - sudo: false
+    php: 5.6  
   exclude:
   - sudo: false
-    php: 7.1
+    php: 5.6
   allow_failures:
   - os: windows
     env: KEY=VALUE
